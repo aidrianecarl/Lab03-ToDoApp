@@ -117,3 +117,17 @@
     margin: 10px;
 }
 
+.todo-card {
+  position: relative; /* allow delete button to sit in corner */
+}
+
+.delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  color: red;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+}

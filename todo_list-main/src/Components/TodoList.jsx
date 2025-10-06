@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaTrash, FaPlus } from 'react-icons/fa';
 import './TodoList.css';
 
 const TodoList = () => {
@@ -46,7 +47,7 @@ const TodoList = () => {
             onChange={(e) => setHeadingInput(e.target.value)}
           />
           <button className="add-list-button" onClick={handleAddTodo}>
-            Add Heading
+            <FaPlus /> Add Heading
           </button>
         </div>
       </div>
@@ -54,20 +55,21 @@ const TodoList = () => {
       <div className="todo_main">
         {todos.map((todo, index) => (
           <div key={index} className="todo-card">
-            <div className='heading_todo'>
+            {/* Trash icon in upper right */}
+            <button
+              className="delete-button"
+              onClick={() => handleDeleteTodo(index)}
+            >
+              <FaTrash />
+            </button>
+
+            <div className="heading_todo">
               <h3>{todo.heading}</h3>
-              <button
-                className="delete-button"
-                onClick={() => handleDeleteTodo(index)}
-              >
-                Delete Heading
-              </button>
             </div>
-            
 
             <ul>
               {todo.lists.map((item, listIndex) => (
-                <li key={listIndex} className='todo_inside_list'>
+                <li key={listIndex} className="todo_inside_list">
                   <p>{item}</p>
                 </li>
               ))}
@@ -76,12 +78,17 @@ const TodoList = () => {
             <div className="add_list">
               <input
                 type="text"
-                className='list-input'
+                className="list-input"
                 placeholder="Add List"
                 value={listInputs[index] || ''}
                 onChange={(e) => handleListInputChange(index, e.target.value)}
               />
-              <button className='add-list-button' onClick={() => handleAddList(index)}>Add List</button>
+              <button
+                className="add-list-button"
+                onClick={() => handleAddList(index)}
+              >
+                Add List
+              </button>
             </div>
           </div>
         ))}
